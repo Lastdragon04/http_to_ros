@@ -1,0 +1,797 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    user-select: none;
+    width: 100vw;
+    height: 100vh;
+}
+
+.for_all {
+    display: flex;
+    height: 100vh;
+}
+
+.sidebar {
+    width: 9vw;
+    background-color: #333;
+    color: white;
+    position: relative;
+    transition: width 0.3s ease;
+}
+
+.sidebar_top {
+    text-align: center;
+    padding: 20px 0;
+}
+
+.sidebar_top img {
+    max-width: 150px; /* Adjust the size of the image */
+    height: auto;
+}
+.sidebar_bottom{
+    position: absolute;
+    bottom: 0;
+    color:white;
+    margin-bottom: 5%;
+}
+
+
+.toggle-btn:hover {
+    background-color: #575757; /* Change background on hover */
+}
+
+.nav-list {
+    list-style: none;
+    padding: 5px;
+    display: block; /* Ensure items take full width */
+}
+
+.nav-list li {
+    margin: 5px 0;
+}
+
+.nav-list a {
+    color: gray; /* Default link color */
+    text-decoration: none;
+    text-align: center;
+    transition: color 0.3s ease, background-color 0.3s ease; /* Smooth transitions */
+    font-size: 18px; /* Larger font size */
+    line-height: 1.5; /* Line height */
+    padding: 10px 15px; /* Padding for links */
+    display: block; /* Ensure full width */
+}
+
+.nav-list a.active {
+    color: white; /* Active link color */
+    background-color: #575757; /* Active link background color */
+}
+
+.nav-list a:hover {
+    color: white; /* Link color on hover */
+    background-color: #575757; /* Background color on hover */
+}
+
+.main-content {
+    display: none;
+    width: 91vw;
+    padding: 20px;
+    background-color: #ffffff; /* Light background for main content */
+}
+.main-content.active{
+    display: flex;
+    flex-direction: column;
+    gap: 0.5vh;
+}
+
+.title{
+    width: 100%;
+    height: auto;
+}.title h1{
+    font-size:3em;
+}
+.content{
+    width: 100%;
+    height: auto;
+    display: flex;
+    flex-direction: column;
+    overflow: auto;
+}
+
+.custom-table {
+    width: 100%;
+    border-collapse: collapse; /* 确保单元格之间没有空隙 */
+    background-color: #ffffff; /* 白色背景 */
+    color: rgb(48, 48, 48);
+}
+
+.custom-table th, .custom-table td {
+    border-bottom: 1px solid rgb(187, 187, 187); /* 淡灰色表格框 */
+    text-align: center; /* 文本左对齐 */
+    height:50px;
+    width:10%;
+}
+
+.custom-table th {
+    background-color: #ebebeb; /* 表头背景色 */
+}
+
+.custom-table tr:hover {
+    background-color: #f1f1f1; /* 悬停时的背景颜色 */
+}
+
+
+.background_index{
+    background-image: url('../static/img/index.jpg'); /* 替换为你的图片路径 */
+    background-size: cover; /* 使背景图片覆盖整个div */
+    background-position: center; /* 使背景图片居中 */
+    background-repeat: no-repeat; /* 防止背景图片重复 */
+}
+
+.control-table {
+    width: 89vw;
+    border-collapse: collapse; /* 确保单元格之间没有空隙 */
+    background-color: #ffffff; /* 白色背景 */
+    color: rgb(48, 48, 48);
+}
+
+.control-table th, .control-table td {
+    border-bottom: 1px solid rgb(187, 187, 187); /* 淡灰色表格框 */
+    text-align: center; /* 文本左对齐 */
+    height:50px;
+    width:7%;
+}
+
+.control-table th {
+    background-color: #ebebeb; /* 表头背景色 */
+}
+
+.control-table tr:hover {
+    background-color: #f1f1f1; /* 悬停时的背景颜色 */
+}
+
+.add_action_table{
+    width: 100%;
+    border-collapse: collapse; /* 确保单元格之间没有空隙 */
+    background-color: #ffffff; /* 白色背景 */
+    color: rgb(48, 48, 48);
+}.add_action_table th,.add_action_table td{
+    border-bottom: 1px solid rgb(187, 187, 187); /* 淡灰色表格框 */
+    text-align: center; /* 文本左对齐 */
+    height:35px;
+    width:20%;
+}.add_action_table th{
+    background-color: #f1f1f1; /* 悬停时的背景颜色 */
+}.add_action_table tr:hover{
+    background-color: #f1f1f1; /* 悬停时的背景颜色 */
+}
+
+.normal_btn {
+    margin-bottom: 5px;
+    background-color: transparent; /* 初始状态无背景颜色 */
+    color: #007BFF; /* 文字颜色为蓝色 */
+    border: 2px solid #007BFF; /* 边框颜色为蓝色 */
+    border-radius: 6px;
+    padding: 10px 20px; /* 内边距 */
+    font-size: 16px; /* 字体大小 */
+    transition: background-color 0.618s ease; /* 过渡效果 */
+}
+
+.normal_btn:hover {
+    background-color: #007BFF; /* 悬停时的背景颜色 */
+    color: white; /* 悬停时的文字颜色 */
+}
+.modal {
+    display: none; /* Hidden by default */
+    position: fixed; /* Stay in place */
+    z-index: 2; /* Sit on top */
+    left: 0;
+    top: 0;
+    width: 100%; /* Full width */
+    height: 100%; /* Full height */
+    overflow: auto; /* Enable scroll if needed */
+    background-color: rgb(0,0,0); /* Fallback color */
+    background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+}
+
+/* Modal Content */
+.modal-content {
+    background-color: #fefefe;
+    padding: 20px;
+    border: 1px solid #888;
+    margin-top: 6%;
+    margin-left: 35%;
+    width: 25%; /* Fixed width */
+    height: auto; /* Fixed height */
+    border-radius: 10px; /* Rounded corners */
+    box-shadow: 0 4px 8px rgba(0,0,0,0.2); /* Shadow effect */
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between; /* Ensure content is evenly distributed vertically */
+    position: relative; /* Make the modal content a positioning context */
+    gap: 15px;
+}
+
+.add-action-modal-content {
+    background-color: #fefefe;
+    padding: 20px;
+    border: 1px solid #888;
+    margin-top: 6%;
+    width: 25%; /* Fixed width */
+    max-height: 60%;
+    border-radius: 10px; /* Rounded corners */
+    box-shadow: 0 4px 8px rgba(0,0,0,0.2); /* Shadow effect */
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between; /* Ensure content is evenly distributed vertically */
+    position: relative; /* Make the modal content a positioning context */
+    overflow: auto;
+}
+
+/* Close button */
+.close-btn {
+    color: #aaa;
+    position: absolute; /* Use absolute positioning */
+    top: 10px; /* Adjust as needed */
+    right: 10px; /* Adjust as needed */
+    font-size: 28px;
+    font-weight: bold;
+    background: none; /* Remove background */
+    border: none; /* Remove border */
+    cursor: pointer;
+}
+
+.close-btn:hover,
+.close-btn:focus {
+    color: black;
+    text-decoration: none;
+}
+
+.table_operation_btn{
+    background-color: transparent; /* 初始状态无背景颜色 */
+    color: #007BFF; /* 文字颜色为蓝色 */
+    border: 1px solid #007BFF; /* 边框颜色为蓝色 */
+    border-radius: 5px;
+    transition: background-color 0.618s ease; /* 过渡效果 */
+    width: 80px;
+}
+
+.table_operation_btn:hover {
+    background-color: #1a70cc; /* 悬停时的背景颜色 */
+    color: white; /* 悬停时的文字颜色 */
+}
+
+.table_operation_btn_success{
+    background-color: transparent; /* 初始状态无背景颜色 */
+    color: #479947; /* 文字颜色为蓝色 */
+    border: 1px solid #93c476; /* 边框颜色为蓝色 */
+    border-radius: 5px;
+    transition: background-color 0.618s ease; /* 过渡效果 */
+    width: 80px;
+}
+
+.table_operation_btn_success:hover {
+    background-color: #6fc264; /* 悬停时的背景颜色 */
+    color: white; /* 悬停时的文字颜色 */
+}
+
+.table_operation_btn_waring{
+    background-color: transparent; /* 初始状态无背景颜色 */
+    color: #fc3e3e; /* 文字颜色为蓝色 */
+    border: 1px solid #fc3e3e; /* 边框颜色为蓝色 */
+    border-radius: 5px;
+    transition: background-color 0.618s ease; /* 过渡效果 */
+    width: 80px;
+}
+.table_operation_btn_waring:hover {
+    background-color: #c23838; /* 悬停时的背景颜色 */
+    color: white; /* 悬停时的文字颜色 */
+}
+
+.localtion-card{
+    display: flex;
+    flex-direction: column;
+}
+
+.form_box{
+    display: flex;
+    flex-direction: row;
+    gap: 5px;
+}
+.form_box label{
+    padding-top: 9px;
+    height: auto; /* 设置label的高度 */
+    width: 18%;
+}
+.form_box input{
+    width: 70%
+}
+
+.motor_choose_output_div{
+    width: 93%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: background-color 0.3s ease; /* 添加过渡效果 */
+    scrollbar-width: 7%;
+}.motor_choose_output_div:hover{
+    background-color: #aaaaaa; /* 悬停时的背景颜色 */
+}
+.control_center_menu{
+    display: flex;
+    flex-direction: row;
+    gap: 5px;
+    padding-right: 60px;
+}.control_center_menu div{
+    display: flex;
+    flex-direction: column-reverse;
+}
+.main-control-center{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    width: 100%;
+    max-height: 100%;
+    gap: 30px;
+    padding-right: 60px;
+}
+.contorl-card{
+    width: 49%;
+    height: auto;    border-radius: 15px;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    padding: 30px;
+    display: flex;
+    flex-direction: column;
+}
+.card_title{
+    font-size: xx-large;
+    font-weight: bolder;
+}.card_body{
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    gap: 1%;
+}.card_body input[type="range"]{
+    width: 30%;
+}.card_body label{
+    width: 35%;
+    margin-bottom: 0;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}.card_body span{
+    width: 15%;
+    margin-bottom: 0;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+.card_body input[type="text"]{
+    width: 5%;
+}.card-text {
+    margin-bottom: 0;
+}
+.action_groups_cards_box{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    height: 90%;
+    gap: 2%;
+    padding-left: 10px;
+    overflow-y: auto;
+}.action_groups_cards_box .card{
+    position: relative;
+    width: 16vw;
+    height: 22vh;
+    top: 10px; 
+    right: 10px;
+    border-radius: 0.5rem;
+    box-shadow: 0 0 0 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    transition: opacity 0.5s ease-out; /* Transition for opacity */
+    transition: height 1s ease; /* 设置过渡效果 */
+    overflow: hidden;
+}.action_groups_cards_box .card .action_tree_box{
+    position: absolute;
+    width: 85%;
+    height: 60%;
+    overflow-y: auto;
+    margin-top: 28.5%;
+    display: flex;
+    flex-direction: column;
+    gap: 1vh;
+}.action_groups_cards_box .tree{
+    display:flex;
+    flex-direction: row;
+    gap:5%;
+}
+.action_name_statu{
+    width: 4vw;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+.action_gap_time_statu input{
+    width:3vw;
+    border-top: 0;
+    border-left: 0;
+    border-right: 0;
+    text-align: center;
+}
+
+#action_group_details{
+    position: absolute;
+    right: 0;
+    width: 80%;
+    height: 90%;
+    bottom: -100%; /* Start off the screen */
+    padding: 1%;
+    overflow: auto;
+    box-shadow: -3px 0 5px rgba(0, 0, 0, 0.2);
+    border-top-left-radius: 10px;
+    border-bottom-left-radius: 10px;
+    transition: bottom 1s ease-in-out;
+}#action_group_details.active {
+    bottom: 9%;
+}
+
+
+.right_card_body_div{
+    position: absolute;
+    top: 0; /* Adjust as needed */
+    right: 0; /* Adjust as needed */
+    display: flex;
+    flex-direction: row;
+    gap: 0;
+}.right_card_body_div .btn-danger{
+    margin-left: -5px;
+    border-radius:0 0 0 0;
+}.right_card_body_div .btn-waring{
+    border-radius:0 0 0 0;
+}.right_card_body_div .btn-primary{
+    margin-left: -5x;
+    border-radius:0 0 0 0;
+}
+.depend_over_flow_hide{
+    width: 150px!important;
+    overflow: hidden;
+    text-overflow:ellipsis;
+    white-space: nowrap;
+}.depend_over_flow_hide a{
+    font-size: xx-small;
+}
+
+.action_table {
+    width: 100%;
+    border-collapse: collapse; /* 确保单元格之间没有空隙 */
+    background-color: #ffffff; /* 白色背景 */
+    color: rgb(48, 48, 48); /* 字体颜色 */
+    table-layout: fixed; /* 确保表格布局是固定的 */
+}
+
+.action_table th, .action_table td {
+    border-bottom: 1px solid rgb(187, 187, 187); /* 淡灰色表格框 */
+    text-align: center; /* 文本居中对齐 */
+    height: 35px;
+    white-space: nowrap; /* 防止文本换行 */
+    overflow: hidden; /* 隐藏溢出内容 */
+    text-overflow: ellipsis; /* 使用省略号表示溢出内容 */
+    padding: 8px; /* 增加内边距 */
+}
+.action_table th:nth-child(1), .action_table td:nth-child(1) {
+    width: 5%;
+}
+.action_table th:nth-child(2), .action_table td:nth-child(2) {
+    width: 35%;
+}
+.action_table th {
+    background-color: #f1f1f1; /* 表头背景颜色 */
+}
+
+.action_table tr:hover {
+    background-color: #e0e0e0; /* 悬停时的背景颜色 */
+}.action_table tr.active {
+    background-color: #d3e0fa; /* 目标背景颜色 */
+}
+
+@media (max-width: 600px) {
+    .action_table th, .action_table td {
+        width: auto; /* 在小屏幕上自动调整宽度 */
+        white-space: normal; /* 允许文本换行 */
+    }
+}
+
+.circle {
+    display: flex;
+    width: 20px; /* 圆的直径 */
+    height: 20px; /* 圆的直径 */
+    background-color: transparent; /* 背景颜色设为透明 */
+    border: 1px solid gray; /* 添加边框以显示圆形 */
+    border-radius: 50%; /* 使形状变为圆形 */
+    align-items: center;
+    justify-content: center;
+    color: gray;
+    transition: background-color 0.3s ease, border-color 0.3s ease; /* 添加过渡效果 */
+}
+
+.circle.active {
+    background-color: #007bff; /* 鼠标悬停时背景变为绿色 */
+    border-color: #007bff; /* 鼠标悬停时边框颜色变为绿色 */
+    color: white;
+}
+.button_seq{
+    background-color: transparent; /* 初始状态无背景颜色 */
+    color: #5e5e5e; /* 文字颜色为蓝色 */
+    border: 1px solid #a3a3a3; /* 边框颜色为蓝色 */
+    border-radius: 5px;
+    padding: 0px;
+    transition: background-color 0.618s ease; /* 过渡效果 */
+    width: 40px;
+}.button_seq:hover{
+    background-color: #838383;
+    color: white;
+}
+.button_seq_disabled{
+    background-color: transparent; /* 初始状态无背景颜色 */
+    color: #5e5e5e; /* 文字颜色为蓝色 */
+    border: 1px solid #a3a3a3; /* 边框颜色为蓝色 */
+    border-radius: 5px;
+    padding: 0px;
+    transition: background-color 0.618s ease; /* 过渡效果 */
+    width: 40px;
+}
+
+.outer-circle {
+    width: 100px;
+    height: 100px;
+    border: 1px solid black;
+    border-radius: 50%;
+    position: relative;
+  }
+.inner-circle {
+    width: 50px;
+    height: 50px;
+    background-color: rgb(63, 197, 146);
+    border-radius: 50%;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+*:focus {
+    outline: none;
+}
+
+.knobs,
+.layer {
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+}
+
+.switch {
+    position: relative;
+    width: 4vw;
+    height: 3.5vh;
+    margin: -20px 0 0 0; /* Remove auto margins to prevent centering */
+    overflow: hidden;
+}
+
+.button.r,
+.button.r .layer {
+    border-radius: 100px;
+}
+
+.button.b2 {
+    border-radius: 2px;
+}
+
+.checkbox {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    padding: 0;
+    margin: 0;
+    opacity: 0;
+    cursor: pointer;
+    z-index: 3;
+}
+
+.knobs {
+    z-index: 2;
+}
+
+.layer {
+    width: 100%;
+    background-color: #ebf7fc;
+    transition: 0.3s ease all;
+    z-index: 1;
+}
+
+/* Button 18 */
+.switch_18 .knobs:before,
+.switch_18 .knobs span {
+    content: 'YES';
+    position: absolute;
+    top: 4px;
+    left: 4px;
+    color: #fff;
+    font-size: 10px;
+    font-weight: bold;
+    text-align: center;
+    line-height: 1;
+    background-color: #03a9f4;
+    border-radius: 2px;
+}
+
+.switch_18 .knobs:before {
+    top: 50%;
+    left: 8px;
+    width: 1.8vw;
+    height: 2.5vh;
+    margin-top: -5px;
+    background-color: transparent;
+    z-index: 2;
+}
+
+.switch_18 .knobs span {
+    width: 1.8vw;
+    height: 2.5vh;
+    padding: 9px 4px;
+    transition: 0.3s ease all, left 0.3s cubic-bezier(0.18, 0.89, 0.35, 1.15);
+    z-index: 1;
+}
+
+.switch_18 .checkbox:active + .knobs:before {
+    left: 10px;
+    width: 46px;
+    height: 4px;
+    color: transparent;
+    margin-top: -2px;
+    background-color: #0095d8;
+    transition: 0.3s ease all;
+    overflow: hidden;
+}
+
+.switch_18 .checkbox:active + .knobs span {
+    width: 58px;
+}
+
+.switch_18 .checkbox:checked:active + .knobs:before {
+    left: auto;
+    right: 10px;
+    background-color: #d80000;
+}
+
+.switch_18 .checkbox:checked:active + .knobs span {
+    margin-left: -38px;
+}
+
+.switch_18 .checkbox:checked + .knobs:before {
+    content: 'NO';
+    left: 47px;
+}
+
+.switch_18 .checkbox:checked + .knobs span {
+    left: 42px;
+    background-color: #f44336;
+}
+
+.switch_18 .checkbox:checked ~ .layer {
+    background-color: #fcebeb;
+}
+
+.flipswitch {
+    position: relative;
+    width: 94px;
+  }
+  .flipswitch input[type=checkbox] {
+    display: none;
+  }
+  .flipswitch-label {
+    display: block;
+    overflow: hidden;
+    cursor: pointer;
+    border: 1px solid #999999;
+    border-radius: 50px;
+  }
+  .flipswitch-inner {
+    width: 200%;
+    margin-left: -100%;
+    transition: margin 0.3s ease-in 0s;
+  }
+  .flipswitch-inner:before, .flipswitch-inner:after {
+    float: left;
+    width: 50%;
+    height: 31px;
+    padding: 0;
+    line-height: 31px;
+    font-size: 18px;
+    color: white;
+    font-family: Trebuchet, Arial, sans-serif;
+    font-weight: bold;
+    box-sizing: border-box;
+  }
+  .flipswitch-inner:before {
+    content: "循环";
+    padding-left: 12px;
+    background-color: #0a8bee;
+    color: #FFFFFF;
+  }
+  .flipswitch-inner:after {
+    content: "单次";
+    padding-right: 12px;
+    background-color: #EBEBEB;
+    color: #888888;
+    text-align: right;
+  }
+  .flipswitch-switch {
+    width: 38px;
+    height: 40px;
+    margin: -3.5px;
+    background: #FFFFFF;
+    border: 1px solid #999999;
+    border-radius: 50px;
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    right: 60px;
+    transition: all 0.3s ease-in 0s;
+  }
+  .flipswitch-cb:checked + .flipswitch-label .flipswitch-inner {
+    margin-left: 0;
+  }
+  .flipswitch-cb:checked + .flipswitch-label .flipswitch-switch {
+    right: 0;
+  }
+  .location_all_select{
+    width: 3vw;
+    height: 3vh;
+  }
+
+  .imu-table th, .imu-table td {
+    text-align: center; /* 文本左对齐 */
+    height:50px;
+    width:9.44%;
+}
+#add_imu_form label{
+    margin-bottom: 0;
+    padding-top: 10px;
+}
+.knowledge-table th, .knowledge-table td {
+    text-align: center; /* 文本左对齐 */
+    height:50px;
+    width: 11.66%;
+    white-space: nowrap; /* 防止文本换行 */
+    text-overflow: ellipsis; /* 使用省略号表示溢出内容 */
+}
+.highlight {
+    background-color: #deffde !important; /* 浅绿色高亮 */
+}
+
+.result_modal_content {
+	background-color: #fefefe;
+	padding: 20px;
+	border: 1px solid #888;
+	margin-top: 6%;
+	margin-left: 20%;
+	width: 60%;
+	height: 50%;
+	border-radius: 10px;
+	box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+	display: flex;
+	flex-direction: column;
+    overflow-y: auto;
+	position: relative;
+	gap: 15px;
+}.result_modal_content img{
+    width: 98%;
+    object-fit: cover;
+}
