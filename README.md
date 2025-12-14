@@ -18,3 +18,9 @@
     source install/setup.bash
     ros2 run robot_control http_conrtol
     ```
+
+ps:
+天工2.0系列机器人开箱机器人需要切换到motion_control模式下
+天轶天工在未配置DDS情况下：
+    天轶2.0系列机器人需要将该程序部署在内部
+    天工2.0系列则可分布式通信（连接网线）
