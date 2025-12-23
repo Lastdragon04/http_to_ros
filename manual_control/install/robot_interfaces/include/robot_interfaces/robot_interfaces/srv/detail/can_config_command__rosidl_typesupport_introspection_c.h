@@ -1,1 +1,0 @@
-/home/zck/workspace/http_to_ros/manual_control/build/robot_interfaces/rosidl_typesupport_introspection_c/robot_interfaces/srv/detail/can_config_command__rosidl_typesupport_introspection_c.h

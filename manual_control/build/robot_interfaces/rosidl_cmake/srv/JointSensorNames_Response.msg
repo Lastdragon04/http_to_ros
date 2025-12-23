@@ -1,3 +1,0 @@
-
-string[]  joint_names
-string[]  sensor_names

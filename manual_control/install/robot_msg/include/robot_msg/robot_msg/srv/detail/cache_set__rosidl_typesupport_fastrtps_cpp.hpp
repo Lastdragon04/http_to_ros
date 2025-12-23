@@ -1,1 +1,0 @@
-/home/zck/workspace/http_to_ros/manual_control/build/robot_msg/rosidl_typesupport_fastrtps_cpp/robot_msg/srv/detail/cache_set__rosidl_typesupport_fastrtps_cpp.hpp

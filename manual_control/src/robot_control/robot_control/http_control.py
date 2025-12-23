@@ -43,11 +43,12 @@ class FastAPINode(Node):
 
         self.inspire_hand_left = self.create_publisher(JointState, '/inspire_hand/ctrl/left_hand', 10)
         self.inspire_hand_right = self.create_publisher(JointState, '/inspire_hand/ctrl/right_hand', 10)
-
+        
 
         self.ALLOWED_PARTS={"arm":[],"head":[]}
         self.pub={"head":self.head_pub,"arm":self.arm_pub ,"waist":self.waist_pub,"leg":self.leg_pub,"ins_left_hand":self.inspire_hand_left,"ins_right_hand":self.inspire_hand_right}
         self.parts_name={"arm":"手臂","leg":"腿","waist":"腰","head":"头","ins_left_hand":"左手（因时）","ins_right_hand":"右手（因时）"} 
+        self.part_busy={"arm":False,"leg":True,"waist":False,"head":True,"ins_left_hand":False,"ins_right_hand":False} 
         self.declare_parameter('server_port', 3754)
         self.server_port = self.get_parameter('server_port').get_parameter_value().integer_value
         self.circulate=False
@@ -74,33 +75,7 @@ class FastAPINode(Node):
             self.get_logger().error(f"ERROR:part {e} is not exit")
             return False
 
-    # def _create_msg(self,command,part='arm'):
-    #     """创建关节控制消息，严格匹配SetMotorPosition类型要求"""
-    #     if part in ["ins_left_hand","ins_right_hand"]:
-    #         msg = JointState()
-    #         msg.header.stamp = self.get_clock().now().to_msg()
-    #         msg.header.frame_id = part
-    #         if part=="ins_left_hand":
-    #             msg.name=[str(item.name_index-70) for item in command]
-    #         if part=="ins_right_hand":
-    #             msg.name=[str(item.name_index-80) for item in command]
-    #         msg.position=[item.value for item in command]
-    #         return msg
-
-    #     elif part in ["arm","leg","waist","head"]:
-    #         msg = CmdSetMotorPosition()
-    #         msg.header.stamp = self.get_clock().now().to_msg()
-    #         msg.header.frame_id = part
-    #         msg.cmds=[]
-    #         for data in command: 
-    #             # 构建电机控制指令（所有字段均为正确类型）
-    #             motor_cmd = SetMotorPosition()
-    #             motor_cmd.name = data.name_index                  # 关节ID（整数，符合name字段要求）
-    #             motor_cmd.pos = float(data.value)                 # 位置（float类型）
-    #             motor_cmd.spd = data.speed                       # 速度（float类型）
-    #             motor_cmd.cur = 5.0                        # 电流（float类型，已修复）
-    #             msg.cmds.append(motor_cmd)
-    #     return msg
+    
 
     def _create_msg(self, command, part: str = 'arm') -> Union[JointState, CmdSetMotorPosition]:
         """创建关节控制消息，严格匹配SetMotorPosition类型要求
@@ -223,12 +198,14 @@ class FastAPINode(Node):
         @self.app.get("/control/get_all")
         async def get_all_control(robot_type:int=Query(...),db:IIS=Depends(self.get_db)):
             try:
+                if robot_type == 3:
+                    robot_type="天工2.0Pro"
                 if robot_type == 2:
                     robot_type="天轶2.0Pro"
                 if robot_type == 1:
                     robot_type="天工2.0Plus"
                 part=db.get_allmodules(robot_type)
-                if robot_type=="天工2.0Plus":
+                if robot_type in ["天工2.0Plus","天工2.0Pro"]:
                     part.remove("leg")
                 motors=db.get_all_motor_config(robot_type)
                 part_names=map_part(self.parts_name,part)
@@ -291,7 +268,7 @@ class FastAPINode(Node):
 
         @self.app.post("/action/run")
         def action_run(data: Dict[str, List[CommandModel]],db:IIS=Depends(self.get_db)):
-            print(data)
+            self.make_action_simple(data)
             return {"message":"success"}
 
         @self.app.delete("/action/delete")
@@ -304,15 +281,27 @@ class FastAPINode(Node):
             self.get_logger().info(f"接到请求 | {datetime.now().strftime('%H:%M:%S.%f')}")
             action_group=db.query_cmd_by_group_id(form.group_id)
             self.circulate=form.cycle
+            # print(action_group)
             commands=[]
             while True:
-                for data in action_group:
-                    for part,value in data.items():
-                        msg=self._create_msg(value,part)
-                        self._publish(msg,part)
+                for index in range(len(action_group)):
+                    print(action_group[index])
+                    for action in action_group[index]:
+                        for part,value in action.items():
+                            msg=self._create_msg(value,part)
+                            # print(msg)
+                            self._publish(msg,part)
+                        # print(index)
+                    time.sleep(form.gap_time[index])
                 if self.circulate==False:
+                    print("动作组暂停")
                     break
             return {"message":"执行完毕"}
+
+        @self.app.post("/action_group/stop")
+        def action_group_stop():
+            self.circulate=False
+            return {"message":"已暂停"}
 
         @self.app.post("/control/reset_current")
         def reset_current(form:ResetCurrentModel,db:IIS=Depends(self.get_db)):
@@ -338,6 +327,10 @@ class FastAPINode(Node):
                     msg.cmds.append(motor_cmd)
                 self.pub[part].publish(msg)
             return {"message":"success"}
+
+        @self.app.post("/action/record_start")
+        def action_record_satrt():
+            pass
 
         self.app.mount("/static", StaticFiles(directory=dist_path), name="static")
         templates = Jinja2Templates(directory=dist_path+"/templates")

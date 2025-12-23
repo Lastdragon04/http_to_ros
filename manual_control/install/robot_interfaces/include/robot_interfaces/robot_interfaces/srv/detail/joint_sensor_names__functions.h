@@ -1,1 +1,0 @@
-/home/zck/workspace/http_to_ros/manual_control/build/robot_interfaces/rosidl_generator_c/robot_interfaces/srv/detail/joint_sensor_names__functions.h

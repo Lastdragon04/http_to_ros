@@ -1,6 +1,0 @@
-setup.py
-bodyctrl_msgs/__init__.py
-bodyctrl_msgs.egg-info/PKG-INFO
-bodyctrl_msgs.egg-info/SOURCES.txt
-bodyctrl_msgs.egg-info/dependency_links.txt
-bodyctrl_msgs.egg-info/top_level.txt

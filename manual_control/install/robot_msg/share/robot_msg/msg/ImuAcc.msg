@@ -1,1 +1,0 @@
-/home/zck/workspace/http_to_ros/manual_control/src/robot_msg/msg/ImuAcc.msg

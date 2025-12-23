@@ -1,1 +1,0 @@
-/home/zck/workspace/http_to_ros/manual_control/build/robot_interfaces/rosidl_generator_py/robot_interfaces/msg/_motor_can_command.py

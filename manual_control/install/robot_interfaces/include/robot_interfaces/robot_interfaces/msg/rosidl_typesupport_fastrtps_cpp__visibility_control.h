@@ -1,1 +1,0 @@
-/home/zck/workspace/http_to_ros/manual_control/build/robot_interfaces/rosidl_typesupport_fastrtps_cpp/robot_interfaces/msg/rosidl_typesupport_fastrtps_cpp__visibility_control.h

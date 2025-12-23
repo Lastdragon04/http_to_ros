@@ -1,1 +1,0 @@
-/home/zck/workspace/http_to_ros/manual_control/build/robot_msg/rosidl_typesupport_introspection_c/robot_msg/srv/detail/cache_set__rosidl_typesupport_introspection_c.h

@@ -1,8 +1,0 @@
-msg/CmdSetMotorPosition.idl
-msg/CmdSetMotorPosition.msg
-msg/MotorStatus.idl
-msg/MotorStatus.msg
-msg/MotorStatusMsg.idl
-msg/MotorStatusMsg.msg
-msg/SetMotorPosition.idl
-msg/SetMotorPosition.msg

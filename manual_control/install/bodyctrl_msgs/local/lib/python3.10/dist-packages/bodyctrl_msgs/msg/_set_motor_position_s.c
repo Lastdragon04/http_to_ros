@@ -1,1 +1,0 @@
-/home/zck/workspace/http_to_ros/manual_control/build/bodyctrl_msgs/rosidl_generator_py/bodyctrl_msgs/msg/_set_motor_position_s.c

@@ -1,1 +1,0 @@
-/home/zck/workspace/http_to_ros/manual_control/build/bodyctrl_msgs/rosidl_typesupport_fastrtps_cpp/bodyctrl_msgs/msg/detail/set_motor_position__rosidl_typesupport_fastrtps_cpp.hpp

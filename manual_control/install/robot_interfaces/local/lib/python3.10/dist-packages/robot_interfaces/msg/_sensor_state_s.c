@@ -1,1 +1,0 @@
-/home/zck/workspace/http_to_ros/manual_control/build/robot_interfaces/rosidl_generator_py/robot_interfaces/msg/_sensor_state_s.c

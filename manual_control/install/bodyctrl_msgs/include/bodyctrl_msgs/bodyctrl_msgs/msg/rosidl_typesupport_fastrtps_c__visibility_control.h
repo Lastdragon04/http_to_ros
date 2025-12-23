@@ -1,1 +1,0 @@
-/home/zck/workspace/http_to_ros/manual_control/build/bodyctrl_msgs/rosidl_typesupport_fastrtps_c/bodyctrl_msgs/msg/rosidl_typesupport_fastrtps_c__visibility_control.h

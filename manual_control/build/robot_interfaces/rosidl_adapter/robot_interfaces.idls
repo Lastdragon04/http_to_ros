@@ -1,8 +1,0 @@
-/home/zck/workspace/http_to_ros/manual_control/build/robot_interfaces/rosidl_adapter/robot_interfaces:msg/MotorCanCommand.idl
-/home/zck/workspace/http_to_ros/manual_control/build/robot_interfaces/rosidl_adapter/robot_interfaces:msg/MotorState.idl
-/home/zck/workspace/http_to_ros/manual_control/build/robot_interfaces/rosidl_adapter/robot_interfaces:msg/ImuData.idl
-/home/zck/workspace/http_to_ros/manual_control/build/robot_interfaces/rosidl_adapter/robot_interfaces:msg/SensorState.idl
-/home/zck/workspace/http_to_ros/manual_control/build/robot_interfaces/rosidl_adapter/robot_interfaces:srv/CanConfigCommand.idl
-/home/zck/workspace/http_to_ros/manual_control/build/robot_interfaces/rosidl_adapter/robot_interfaces:srv/JointSensorNames.idl
-/home/zck/workspace/http_to_ros/manual_control/build/robot_interfaces/rosidl_adapter/robot_interfaces:srv/MotorOffset.idl
-/home/zck/workspace/http_to_ros/manual_control/build/robot_interfaces/rosidl_adapter/robot_interfaces:action/ActionGroupBridge.idl

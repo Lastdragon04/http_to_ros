@@ -1,9 +1,0 @@
-{
-  "package_name": "bodyctrl_msgs",
-  "non_idl_tuples": [
-    "/home/zck/workspace/http_to_ros/manual_control/src/bodyctrl_msgs:msg/CmdSetMotorPosition.msg",
-    "/home/zck/workspace/http_to_ros/manual_control/src/bodyctrl_msgs:msg/MotorStatus.msg",
-    "/home/zck/workspace/http_to_ros/manual_control/src/bodyctrl_msgs:msg/MotorStatusMsg.msg",
-    "/home/zck/workspace/http_to_ros/manual_control/src/bodyctrl_msgs:msg/SetMotorPosition.msg"
-  ]
-}

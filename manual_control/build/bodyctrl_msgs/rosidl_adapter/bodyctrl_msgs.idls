@@ -1,4 +1,0 @@
-/home/zck/workspace/http_to_ros/manual_control/build/bodyctrl_msgs/rosidl_adapter/bodyctrl_msgs:msg/CmdSetMotorPosition.idl
-/home/zck/workspace/http_to_ros/manual_control/build/bodyctrl_msgs/rosidl_adapter/bodyctrl_msgs:msg/MotorStatus.idl
-/home/zck/workspace/http_to_ros/manual_control/build/bodyctrl_msgs/rosidl_adapter/bodyctrl_msgs:msg/MotorStatusMsg.idl
-/home/zck/workspace/http_to_ros/manual_control/build/bodyctrl_msgs/rosidl_adapter/bodyctrl_msgs:msg/SetMotorPosition.idl

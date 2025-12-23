@@ -1,1 +1,0 @@
-/home/zck/workspace/http_to_ros/manual_control/build/robot_interfaces/rosidl_typesupport_fastrtps_c/robot_interfaces/action/detail/action_group_bridge__rosidl_typesupport_fastrtps_c.h

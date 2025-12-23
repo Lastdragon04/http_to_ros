@@ -1,1 +1,0 @@
-/home/zck/workspace/http_to_ros/manual_control/build/robot_msg/rosidl_generator_c/robot_msg/srv/detail/imu_rectify__type_support.h

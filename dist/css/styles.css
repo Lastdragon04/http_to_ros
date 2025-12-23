@@ -185,6 +185,39 @@ body {
     background-color: #007BFF; /* 悬停时的背景颜色 */
     color: white; /* 悬停时的文字颜色 */
 }
+
+.green_button{
+    margin-bottom: 5px;
+    background-color: transparent; /* 初始状态无背景颜色 */
+    color: #2cc045; /* 文字颜色为蓝色 */
+    border: 2px solid #2cc045; /* 边框颜色为蓝色 */
+    border-radius: 6px;
+    padding: 10px 20px; /* 内边距 */
+    font-size: 16px; /* 字体大小 */
+    transition: background-color 0.618s ease; /* 过渡效果 */
+}
+
+.green_button:hover {
+    background-color: #2cc045; /* 悬停时的背景颜色 */
+    color: white; /* 悬停时的文字颜色 */
+}
+
+.red_button{
+    margin-bottom: 5px;
+    background-color: transparent; /* 初始状态无背景颜色 */
+    color: #eb0b0b; /* 文字颜色为蓝色 */
+    border: 2px solid #fa0a0a; /* 边框颜色为蓝色 */
+    border-radius: 6px;
+    padding: 10px 20px; /* 内边距 */
+    font-size: 16px; /* 字体大小 */
+    transition: background-color 0.618s ease; /* 过渡效果 */
+}
+
+.red_button:hover {
+    background-color: #fa0a0a; /* 悬停时的背景颜色 */
+    color: white; /* 悬停时的文字颜色 */
+}
+
 .modal {
     display: none; /* Hidden by default */
     position: fixed; /* Stay in place */

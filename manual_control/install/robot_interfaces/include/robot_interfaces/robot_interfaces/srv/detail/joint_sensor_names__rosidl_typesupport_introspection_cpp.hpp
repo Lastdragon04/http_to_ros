@@ -1,1 +1,0 @@
-/home/zck/workspace/http_to_ros/manual_control/build/robot_interfaces/rosidl_typesupport_introspection_cpp/robot_interfaces/srv/detail/joint_sensor_names__rosidl_typesupport_introspection_cpp.hpp

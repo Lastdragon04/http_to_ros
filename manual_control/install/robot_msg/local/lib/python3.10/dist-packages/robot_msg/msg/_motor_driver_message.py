@@ -1,1 +1,0 @@
-/home/zck/workspace/http_to_ros/manual_control/build/robot_msg/rosidl_generator_py/robot_msg/msg/_motor_driver_message.py

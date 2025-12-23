@@ -1,1 +1,0 @@
-/home/zck/workspace/http_to_ros/manual_control/build/robot_interfaces/rosidl_generator_cpp/robot_interfaces/srv/detail/motor_offset__struct.hpp

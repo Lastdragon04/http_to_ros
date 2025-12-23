@@ -150,6 +150,7 @@
                                 <select class="form-control" id="robot_type_select" style="width: 70%!important;">
                                     <option value="1">天工2.0Plus</option>
                                     <option value="2" selected>天轶2.0Pro</option>
+                                    <option value="3">天工2.0Pro</option>
                                 </select>
                             </div>
                         </div>
@@ -170,16 +171,10 @@
                             <div>   
                                 <button class="normal_btn" id="reset_current">重置电流</button>
                             </div>
-                            <div>   
-                                <button class="normal_btn" id="motor_alignment_with_one_click">一键对齐</button>
-                            </div>
                             <div style="display: flex;justify-content: center;">
                                 <div class="spinner-border text-success" role="status" id="align_button_wait" style="display: none;">
                                     <span class="sr-only">Loading...</span>
                                 </div>
-                            </div>
-                            <div>   
-                                <button class="normal_btn" id="motor_alignment">对齐</button>
                             </div>
                             <div>
                                 <button class="normal_btn" id="run">执行</button>
@@ -193,6 +188,7 @@
                             <div>
                                 <button class="normal_btn" id="open_add_action_modal">添加动作组</button>
                             </div>
+
                         </div>
                     </div>
                 </div> 
@@ -291,6 +287,12 @@
                         </div>
                     </div>
                     <div class="control_center_menu">
+                        <div id="action_record_start">
+                            <button class="green_button" id="action_record">动作录制</button>
+                        </div>
+                        <div id="action_record_end" style="display: none;">
+                            <button class="red_button" id="action_record">结束录制</button>
+                        </div>
                         <div>
                             <button class="normal_btn" id="add_group_window_open">添加动作组</button>
                         </div>

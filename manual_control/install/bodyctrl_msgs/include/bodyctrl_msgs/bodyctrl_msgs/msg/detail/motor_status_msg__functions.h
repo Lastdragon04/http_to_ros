@@ -1,1 +1,0 @@
-/home/zck/workspace/http_to_ros/manual_control/build/bodyctrl_msgs/rosidl_generator_c/bodyctrl_msgs/msg/detail/motor_status_msg__functions.h

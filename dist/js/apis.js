@@ -10,10 +10,9 @@ document.addEventListener('DOMContentLoaded', () => {
     const add_action_group_modal=document.getElementById(`add-action-group-modal`);
     const add_action_modal= document.getElementById(`add-action-modal`);
     const action_group_details=document.getElementById('action_group_details');
-    const default_current=3.0
+    const default_current=5.0
     const default_speed=0.1
     const card_strech_time=1000;
-    const protocol_choice=["请选择协议","邱协议","老丁协议","步进协议"];
     const ip = "192.168.31.40"
     const url=`http://${ip}:3754`;
     var imu_socket;
@@ -816,40 +815,6 @@ document.addEventListener('DOMContentLoaded', () => {
         while (motor_table.firstChild) {
             motor_table.removeChild(motor_table.firstChild);
         }
-        $.ajax({
-            type:"get",
-            url:"/motor/get_all",
-            data:"",
-            success: function(response) { // 请求成功时的回调函数
-                response.motors.forEach((element, index) => {
-                    let protocol="未知类型"
-                    switch (element[7]) {
-                        case 1:
-                            protocol = protocol_choice[1]
-                            break
-                        case 2:
-                            protocol = protocol_choice[2]
-                            break
-                        case 3:
-                            protocol = protocol_choice[3]
-                            break
-                        default:
-                            protocol = "未知类型"  // 如果 ${element[7]} 不是 1, 2, 或 3，则赋值为 "未知类型"
-                    }
-                    motor_table.insertAdjacentHTML('beforeend', 
-                        `<tr id="${element[0]}">
-                        <td style="width:5%">${element[0]}</td><td>${element[1]}</td><td>${element[8]}</td><td>${element[2]}</td><td>${protocol}</td><td>${element[3]}</td><td>${element[4]}</td><td>${element[5]}</td><td>${element[6]}</td>
-                        <td style="padding:0;width:15%">
-                            <button class="table_operation_btn" style="height:35px" data-motor-modify-id="${element[0]}">编辑</button>
-                            <button class="table_operation_btn_waring" style="height:35px" data-motor-delete-id="${element[0]}">删除</button>
-                        </td>
-                        </tr>`);
-                });
-                },
-            error: function(xhr, status, error) { // 请求失败时的回调函数
-            console.error(error); // 在控制台打印错误信息
-            }
-        })
     }
 
     function refresh_control_config_page(){
@@ -910,6 +875,7 @@ document.addEventListener('DOMContentLoaded', () => {
         while (control_page.firstChild) {
             control_page.removeChild(control_page.firstChild);
         }
+        alert(1)
         $.ajax({
             type:"get",
             url:"/control/get_all",
@@ -1334,7 +1300,6 @@ document.addEventListener('DOMContentLoaded', () => {
         $.ajax({
             type: "post",
             url: "/action_group/stop",
-            data: {"group_id":parseInt(group_id)},
             success: function (response) {
                 console.log("shit")
             }
@@ -1404,7 +1369,7 @@ document.addEventListener('DOMContentLoaded', () => {
                             <div class="tree" data="${data[0]}">
                                 <div class="circle">${index+1}</div>
                                 <div class="action_name_statu">${data[2]}</div>
-                                <div class="action_gap_time_statu"><input type="number" step="0.1" value="0" title="间隔" id="gap_time_${response.group[0]}_${data[0]}">s</div>
+                                <div class="action_gap_time_statu"><input type="number" step="0.1" value="3" title="间隔" id="gap_time_${response.group[0]}_${data[0]}">s</div>
                             </div>
                             `)
                     })
@@ -1661,24 +1626,6 @@ $(`#reset_current`).click(function(){
         }
     })
 })
-
-    $(`#motor_alignment_with_one_click`).click(function(){
-        $(`#align_button_wait`).css("display","block")
-        $(`#motor_alignment_with_one_click`).css("display","none")
-        $.ajax({
-            type: "post",
-            url: "/control/all_align",
-            success: function (response) {
-                $(`#align_button_wait`).css("display","none")
-                $(`#motor_alignment_with_one_click`).css("display","block")
-                alert(response.message)
-            },
-            error:function(e){
-                $(`#align_button_wait`).css("display","none")
-                $(`#motor_alignment_with_one_click`).css("display","block")
-            }
-        });
-    })
 
     function refresh_rectify_page(){
         const imu_config_table=document.getElementById(`imu_config`)
@@ -2105,4 +2052,14 @@ $(`#reset_current`).click(function(){
         update_action_group_knowledge("add")
     })
 
+
+    $(`#action_record`).click(function(){
+        $(`#action_record_start`).css("display","none")
+        $(`#action_record_end`).css("display","flex")
+    })
+
+    $(`#action_record_end`).click(function(){
+        $(`#action_record_end`).css("display","none")
+        $(`#action_record_start`).css("display","flex")
+    })
 });

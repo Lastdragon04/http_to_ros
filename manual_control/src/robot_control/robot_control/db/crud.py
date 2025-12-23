@@ -193,24 +193,26 @@ class InvertedIndexSearcher:
         self.change(sql,(name,command,action_id))
 
     def parse_command_data(self,temp):
-        result = []
+        result_data = []
         for data in temp:
             command_dict = json.loads(data[0].replace("'", '"').replace("None", 'null'))    
             # 直接构建结果
             for part, commands in command_dict.items():
-                print(commands)
-                result.append({
-                    part: [Command(**cmd) for cmd in commands]
-                })
-        return result
+                result_data.append({part: [Command(**cmd) for cmd in commands]})
+        return result_data
 
     def query_cmd_by_group_id(self,group_id):
+        result=[]
         db=sqlite3.connect(self.db_path)
         cursor=db.cursor()
         sql="""SELECT action.command from action_groups,action where action_groups.id=action.group_id and action_groups.id='%s'"""%(group_id,)
         cursor.execute(sql)
         temp=cursor.fetchall()
-        return self.parse_command_data(temp)
+        # print("===========================")
+        for i in temp:
+            result.append(self.parse_command_data(temp))
+        # print("===========================")
+        return result
 
     def update_seq(self,action_id,way,group_id):
         """UP:ASC DOWN:DESC"""

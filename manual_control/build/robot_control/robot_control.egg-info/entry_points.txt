@@ -1,3 +1,0 @@
-[console_scripts]
-http_control = robot_control.http_control:main
-

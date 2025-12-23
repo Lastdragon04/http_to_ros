@@ -1,1 +1,0 @@
-/home/zck/workspace/http_to_ros/manual_control/build/bodyctrl_msgs/rosidl_generator_py/bodyctrl_msgs/_bodyctrl_msgs_s.ep.rosidl_typesupport_c.c

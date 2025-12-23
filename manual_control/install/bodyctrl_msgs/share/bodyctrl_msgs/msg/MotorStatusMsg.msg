@@ -1,1 +1,0 @@
-/home/zck/workspace/http_to_ros/manual_control/src/bodyctrl_msgs/msg/MotorStatusMsg.msg
